@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Course Details</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <!-- ================================
+         NAVBAR
+    ================================= -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="logo">E-Learn</h1>
+            <nav>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/courses">Courses</a>
+                <a href="/profile">Profile</a>
+                <a href="/logout">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ================================
+         MAIN SECTION
+    ================================= -->
+    <main class="container">
+
+        <!-- TITLE -->
+        <h2 th:text="${course.title}"></h2>
+
+        <!-- COURSE INFORMATION -->
+        <div class="card">
+
+            <p><strong>Description:</strong> 
+                <span th:text="${course.description}"></span>
+            </p>
+
+            <p><strong>Instructor ID:</strong> 
+                <span th:text="${course.instructorId}"></span>
+            </p>
+
+            <p><strong>Duration:</strong> 
+                <span th:text="${course.durationWeeks}"></span> weeks
+            </p>
+
+        </div>
+
+        <hr>
+
+        <!-- ==========================================
+             IF USER IS NOT ENROLLED
+        =========================================== -->
+        <div th:if="${!enrolled}">
+
+            <!-- Not logged in -->
+            <div th:if="${session.loggedUserId == null}" class="card">
+                <h3>You must log in to enroll in this course</h3>
+                <a class="btn" th:href="@{/login.html}">Login to Enroll</a>
+            </div>
+
+            <!-- Logged in but not enrolled -->
+            <div th:if="${session.loggedUserId != null}" class="card">
+                <h3>You are not enrolled in this course</h3>
+
+                <form action="/enroll" method="post">
+                    <input type="hidden" name="courseId" th:value="${course.courseId}">
+                    <button class="btn" type="submit">Enroll Now</button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+             IF USER *IS* ENROLLED
+        =========================================== -->
+        <div th:if="${enrolled}">
+
+            <!-- QUIZ SECTION -->
+            <div class="card">
+                <h3>MCQ Quiz</h3>
+                <a class="btn" th:href="@{'/course/' + ${course.courseId} + '/mcq'}">
+                    Attempt Quiz
+                </a>
+            </div>
+
+            <hr>
+
+            <!-- TASKS SECTION -->
+            <div class="card">
+                <h3>Assignments / Tasks</h3>
+
+                <div th:if="${#lists.isEmpty(tasks)}">
+                    <p>No tasks available.</p>
+                </div>
+
+                <div th:each="t : ${tasks}" class="card">
+                    <h4 th:text="${t.taskTitle}"></h4>
+                    <p th:text="${t.taskDescription}"></p>
+
+                    <p>
+                        <strong>Deadline:</strong>
+                        <span th:text="${t.dueDate}"></span>
+                    </p>
+
+                    <a class="btn" th:href="@{'/task/' + ${t.taskId}}">
+                        View Task
+                    </a>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- CERTIFICATES SECTION -->
+            <div class="card">
+                <h3>Your Certificate</h3>
+
+                <div th:if="${#lists.isEmpty(certificates)}">
+                    <p>No certificate issued yet.</p>
+                </div>
+
+                <div th:each="c : ${certificates}" class="card">
+                    <p><strong>Certificate ID:</strong> 
+                        <span th:text="${c.certificateId}"></span>
+                    </p>
+
+                    <p><strong>Issued on:</strong> 
+                        <span th:text="${c.issueDate}"></span>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ================================
+         FOOTER
+    ================================= -->
+    <footer class="site-footer">
+        <div class="container">© 2025 E-Learning Platform</div>
+    </footer>
+
+</body>
+</html>

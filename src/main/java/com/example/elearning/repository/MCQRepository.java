@@ -1,0 +1,10 @@
+package com.example.elearning.repository;
+
+import com.example.elearning.model.MCQ;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface MCQRepository extends JpaRepository<MCQ, String> {
+    List<MCQ> findByCourseId(String courseId);
+}

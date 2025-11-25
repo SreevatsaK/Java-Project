@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <!-- ================================
+         HEADER / NAVBAR
+    ================================= -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="logo">E-Learn</h1>
+            <nav>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/courses">Courses</a>
+                <a href="/profile">Profile</a>
+                <a href="/logout">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ================================
+         MAIN DASHBOARD
+    ================================= -->
+    <main class="container">
+
+        <h2>Welcome, <span th:text="${user.fullName}"></span>!</h2>
+        <p>Your Email: <span th:text="${user.emailID}"></span></p>
+
+        <hr>
+
+        <h2>Your Enrolled Courses</h2>
+
+        <!-- If no courses -->
+        <div th:if="${enrolledCourses == null or enrolledCourses.size() == 0}">
+            <p>You have not enrolled in any courses yet.</p>
+        </div>
+
+        <!-- Loop courses -->
+        <div th:each="course : ${enrolledCourses}" class="card">
+
+            <h3 th:text="${course.title}"></h3>
+
+            <p th:text="${course.description}"></p>
+
+            <p>
+                <strong>Instructor ID:</strong>
+                <span th:text="${course.instructorId}"></span>
+            </p>
+
+            <p>
+                <strong>Duration:</strong>
+                <span th:text="${course.durationWeeks}"></span> weeks
+            </p>
+
+            <a class="btn" th:href="@{'/course/' + ${course.courseId}}">
+                View Course
+            </a>
+
+        </div>
+
+    </main>
+
+    <!-- ================================
+         SUCCESS MESSAGE (After Enroll)
+    ================================= -->
+    <div th:if="${param.enrolled}">
+        <div class="success-box">🎉 Enrolled Successfully!</div>
+    </div>
+
+    <!-- ================================
+         FOOTER
+    ================================= -->
+    <footer class="site-footer">
+        <div class="container">© 2025 E-Learning Platform</div>
+    </footer>
+
+</body>
+</html>

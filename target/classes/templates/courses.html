@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Courses</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <!-- ================================
+         NAVBAR
+    ================================= -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="logo">Courses</h1>
+            <nav>
+                <a href="/index.html">Home</a>
+                <a href="/login.html">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ================================
+         COURSE LIST SECTION
+    ================================= -->
+    <main class="container">
+
+        <h2>Available Courses</h2>
+
+        <div class="course-list">
+
+            <!-- If no courses -->
+            <div th:if="${#lists.isEmpty(courses)}">
+                <p>No courses available.</p>
+            </div>
+
+            <!-- Loop through courses -->
+            <div th:each="course : ${courses}" class="course-card">
+
+                <h3 th:text="${course.title}"></h3>
+
+                <p th:text="${course.description}"></p>
+
+                <p><strong>Instructor:</strong> 
+                    <span th:text="${course.instructorId}"></span>
+                </p>
+
+                <p><strong>Duration:</strong> 
+                    <span th:text="${course.durationWeeks}"></span> weeks
+                </p>
+
+                <form action="/enroll" method="post">
+                    <input type="hidden" name="courseId" th:value="${course.courseId}">
+                    <button class="btn" type="submit">Enroll</button>
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ================================
+         FOOTER
+    ================================= -->
+    <footer class="site-footer">
+        <div class="container">© 2025 E-Learning Platform</div>
+    </footer>
+
+</body>
+</html>

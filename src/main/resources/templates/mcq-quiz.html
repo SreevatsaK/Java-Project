@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MCQ Quiz</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <!-- ================================
+         NAVBAR
+    ================================= -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="logo">E-Learn</h1>
+            <nav>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/courses">Courses</a>
+                <a href="/profile">Profile</a>
+                <a href="/logout">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ================================
+         MAIN QUIZ AREA
+    ================================= -->
+    <main class="container">
+
+        <h2>MCQ Quiz</h2>
+
+        <form th:action="@{'/course/' + ${courseId} + '/mcq/submit'}" method="post">
+
+            <!-- If no MCQs -->
+            <div th:if="${#lists.isEmpty(mcqs)}">
+                <p>No MCQs available for this course.</p>
+            </div>
+
+            <!-- All MCQs as cards -->
+            <div th:each="m : ${mcqs}" class="card">
+
+                <p><strong th:text="${m.question}"></strong></p>
+
+                <!-- Options -->
+                <label>
+                    <input type="radio" th:name="${'q_' + m.mcqId}" value="A">
+                    <span th:text="${m.optionA}"></span>
+                </label>
+
+                <label>
+                    <input type="radio" th:name="${'q_' + m.mcqId}" value="B">
+                    <span th:text="${m.optionB}"></span>
+                </label>
+
+                <label>
+                    <input type="radio" th:name="${'q_' + m.mcqId}" value="C">
+                    <span th:text="${m.optionC}"></span>
+                </label>
+
+                <label>
+                    <input type="radio" th:name="${'q_' + m.mcqId}" value="D">
+                    <span th:text="${m.optionD}"></span>
+                </label>
+
+            </div>
+
+            <br>
+            <button class="btn" type="submit">Submit Quiz</button>
+
+        </form>
+
+    </main>
+
+    <!-- ================================
+         FOOTER
+    ================================= -->
+    <footer class="site-footer">
+        <div class="container">© 2025 E-Learning Platform</div>
+    </footer>
+
+</body>
+</html>

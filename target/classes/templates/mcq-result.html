@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Result</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <!-- ================================
+         NAVBAR
+    ================================= -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="logo">E-Learn</h1>
+            <nav>
+                <a href="/dashboard">Dashboard</a>
+                <a th:href="@{'/course/' + ${courseId}}">Back to Course</a>
+                <a href="/profile">Profile</a>
+                <a href="/logout">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ================================
+         MAIN RESULT SECTION
+    ================================= -->
+    <main class="container">
+
+        <h2>Quiz Result</h2>
+
+        <div class="card">
+            <p>
+                <strong>Your Score:</strong>
+                <span th:text="${correct}"></span> /
+                <span th:text="${total}"></span>
+            </p>
+
+            <!-- Perfect Score -->
+            <div th:if="${correct == total}">
+                <h3>🎉 Congratulations! Perfect Score!</h3>
+            </div>
+
+            <!-- Not Perfect -->
+            <div th:if="${correct < total}">
+                <h3>Good attempt! Try again for a better score.</h3>
+            </div>
+        </div>
+
+        <br>
+
+        <a class="btn" th:href="@{'/course/' + ${courseId}}">Back to Course</a>
+
+    </main>
+
+    <!-- ================================
+         FOOTER
+    ================================= -->
+    <footer class="site-footer">
+        <div class="container">© 2025 E-Learning Platform</div>
+    </footer>
+
+</body>
+</html>

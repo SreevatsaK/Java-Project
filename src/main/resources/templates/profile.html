@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <!-- ================================
+         NAVBAR
+    ================================= -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="logo">E-Learn</h1>
+            <nav>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/profile">Profile</a>
+                <a href="/logout">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ================================
+         MAIN SECTION
+    ================================= -->
+    <main class="container">
+
+        <h2>User Profile</h2>
+
+        <!-- BASIC USER INFO -->
+        <div class="card">
+            <h3>Basic Information</h3>
+
+            <p><strong>Full Name:</strong> <span th:text="${user.fullName}"></span></p>
+            <p><strong>Email:</strong> <span th:text="${user.emailID}"></span></p>
+            <p><strong>Phone:</strong> <span th:text="${user.phone}"></span></p>
+            <p><strong>Role:</strong> <span th:text="${user.role}"></span></p>
+        </div>
+
+        <!-- ENROLLED COURSES -->
+        <div class="card">
+            <h3>Enrolled Courses</h3>
+
+            <div th:if="${#lists.isEmpty(enrolledCourses)}">
+                <p>No courses enrolled yet.</p>
+            </div>
+
+            <ul th:each="course : ${enrolledCourses}">
+                <li>
+                    <strong th:text="${course.title}"></strong>
+                    — <span th:text="${course.durationWeeks}"></span> weeks
+                </li>
+            </ul>
+        </div>
+
+        <!-- SUBMISSIONS -->
+        <div class="card">
+            <h3>Your Submissions</h3>
+
+            <div th:if="${#lists.isEmpty(submissions)}">
+                <p>No submissions yet.</p>
+            </div>
+
+            <ul th:each="s : ${submissions}">
+                <li>
+                    <strong>Task:</strong> <span th:text="${s.taskId}"></span>
+                    | <strong>Score:</strong> <span th:text="${s.score}"></span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- CERTIFICATES -->
+        <div class="card">
+            <h3>Your Certificates</h3>
+
+            <div th:if="${#lists.isEmpty(certificates)}">
+                <p>No certificates issued yet.</p>
+            </div>
+
+            <ul th:each="c : ${certificates}">
+                <li>
+                    <strong>Certificate ID:</strong> <span th:text="${c.certificateId}"></span>
+                    — <strong>Issued on:</strong> <span th:text="${c.issueDate}"></span>
+                </li>
+            </ul>
+        </div>
+
+    </main>
+
+    <!-- ================================
+         FOOTER
+    ================================= -->
+    <footer class="site-footer">
+        <div class="container">© 2025 E-Learning Platform</div>
+    </footer>
+
+</body>
+</html>

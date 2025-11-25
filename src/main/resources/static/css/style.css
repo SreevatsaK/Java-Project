@@ -1,0 +1,224 @@
+/* ===========================================
+   GLOBAL DARK THEME + MODERN UI STYLING
+   =========================================== */
+
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #0d0f16;
+  color: #e5e7eb;
+  line-height: 1.6;
+}
+
+/* ================================
+   CONTAINER
+   ================================ */
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* ================================
+   HEADER / NAVBAR
+   ================================ */
+.site-header {
+  width: 100%;
+  background: rgba(20, 22, 33, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 18px 0;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.6);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.site-header nav a {
+  color: #cbd5e1;
+  margin-left: 25px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.site-header nav a:hover {
+  color: #fff;
+  text-shadow: 0 0 8px #8b5cf6;
+}
+
+/* ================================
+   HERO SECTION + IMAGE (NEW)
+   ================================ */
+.hero {
+  margin-top: 40px;
+  padding: 50px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #1a1c2c, #11131d);
+  box-shadow: 0 0 40px rgba(0,0,0,0.7);
+}
+
+.hero-with-image {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+
+/* Left Text */
+.hero-text {
+  width: 55%;
+}
+
+.hero-text h2 {
+  font-size: 42px;
+  color: #ffffff;
+}
+
+.hero-text p {
+  color: #cbd5e1;
+  font-size: 18px;
+  margin: 15px 0;
+}
+
+/* Right Image */
+.hero-image {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 350px;
+  animation: float 3s infinite ease-in-out;
+  filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.4));
+}
+
+/* Floating Animation */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Mobile Responsive */
+@media(max-width: 768px) {
+  .hero-with-image {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-text, .hero-image {
+    width: 100%;
+  }
+}
+
+/* ================================
+   BUTTONS
+   ================================ */
+.btn {
+  padding: 12px 22px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white !important;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.8);
+}
+
+/* ================================
+   CARDS
+   ================================ */
+.card, .course-card {
+  background: rgba(30, 32, 45, 0.8);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 25px;
+  border-radius: 16px;
+  margin: 20px 0;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+  transition: 0.25s ease-in-out;
+}
+
+.card:hover, .course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.4);
+}
+
+/* ================================
+   AUTH FORMS
+   ================================ */
+.auth {
+  margin-top: 60px;
+  background: rgba(30, 32, 45, 0.8);
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow: 0 0 35px rgba(0,0,0,0.5);
+}
+
+.auth h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0 20px 0;
+  border-radius: 10px;
+  border: none;
+  background: #1e2130;
+  color: #fff;
+  font-size: 15px;
+}
+
+/* ================================
+   FOOTER
+   ================================ */
+.site-footer {
+  margin-top: 50px;
+  padding: 20px 0;
+  color: #9ca3af;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ================================
+   SUCCESS MESSAGE
+   ================================ */
+.success-box {
+  background: rgba(16, 185, 129, 0.15);
+  padding: 15px;
+  border: 1px solid #10b981;
+  border-radius: 10px;
+  margin: 20px;
+  text-align: center;
+  color: #6ee7b7;
+  font-weight: 600;
+}

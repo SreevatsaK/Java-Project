@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <!-- ================================
+         TOP NAVIGATION
+    ================================= -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="logo">E-Learn</h1>
+            <nav>
+                <a href="/index.html">Back to Homepage</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ================================
+         SIGNUP BOX
+    ================================= -->
+    <div class="auth container">
+
+        <h2>Create Account</h2>
+
+        <form action="/signup" method="post">
+
+            <label>Full Name</label>
+            <input type="text" name="fullName" required>
+
+            <label>Phone</label>
+            <input type="text" name="phone" required>
+
+            <label>Email ID</label>
+            <input type="email" name="emailID" required>
+
+            <label>Password</label>
+            <input type="password" name="password" required>
+
+            <label>Select Role</label>
+            <select name="role">
+                <option value="student">Student</option>
+                <option value="instructor">Instructor</option>
+            </select>
+
+            <button type="submit" class="btn">Sign Up</button>
+
+        </form>
+
+    </div>
+
+    <!-- ================================
+         FOOTER
+    ================================= -->
+    <footer class="site-footer">
+        <div class="container">© 2025 E-Learning Platform</div>
+    </footer>
+
+</body>
+</html>
