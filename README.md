@@ -7,7 +7,6 @@ The platform enables **students, instructors, and administrators** to manage and
 This project demonstrates **modern Java backend architecture, database integration, and web application development**, making it a strong portfolio project for backend and full-stack development.
 
 ---
-
 # 🚀 Project Overview
 
 The **E-Learning Management System (LMS)** is designed to provide a centralized platform where:
@@ -20,6 +19,11 @@ The **E-Learning Management System (LMS)** is designed to provide a centralized 
 The application follows a **layered architecture using Spring Boot**, ensuring scalability, maintainability, and separation of concerns.
 
 ---
+## 📸 Application Preview
+
+<p align="center">
+  <img src="Dashboard.png" alt="E-Learning Dashboard" width="700">
+</p>
 
 # 🏗 System Architecture
 
